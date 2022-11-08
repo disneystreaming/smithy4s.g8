@@ -4,6 +4,8 @@ A simple Giter8 template to generate a http4s server that read/write json via [s
 
 # Usage
 
+The command below will generate a project that works with the latest version of Smithy4s. If you decide to go with another version, you might need to adjust the generated project to make it work.
+
 ## sbt
 
 `sbt new disneystreaming/smithy4s.g8`
