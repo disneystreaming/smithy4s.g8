@@ -30,12 +30,15 @@ object Routes {
 
 object Main extends IOApp.Simple {
   val run = Routes.all.flatMap { routes =>
+    val thePort = port"9000"
+    val theHost = host"localhost"
     EmberServerBuilder
       .default[IO]
-      .withPort(port"9000")
-      .withHost(host"localhost")
+      .withPort(thePort)
+      .withHost(theHost)
       .withHttpApp(routes.orNotFound)
-      .build
+      .build <*
+      Resource.eval(IO.println(s"Server started on: \$theHost:\$thePort"))
   }.useForever
 
 }
