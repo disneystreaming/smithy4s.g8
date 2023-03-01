@@ -21,8 +21,8 @@ When generated, hop into the resulting directory and do: `sbt run` or `mill serv
 In a separate terminal, you'll be able to do:
 
 ```
-curl 'http://localhost:8080/hello/world'
+curl 'http://localhost:9000/hello/world'
 {"greeting":"Hi world"}⏎
 ```
 
-Or view docs in the browser: `open http://localhost:8080/docs`.
+Or view docs in the browser: `open http://localhost:9000/docs`.
