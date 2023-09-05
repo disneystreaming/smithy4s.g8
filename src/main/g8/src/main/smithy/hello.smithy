@@ -1,6 +1,6 @@
 \$version: "2"
 
-namespace com.example.hello
+namespace hello
 
 use alloy#simpleRestJson
 
@@ -10,7 +10,7 @@ service HelloWorldService {
   operations: [Hello]
 }
 
-@http(method: "POST", uri: "/{name}", code: 200)
+@http(method: "GET", uri: "/hello/{name}", code: 200)
 operation Hello {
   input: Person,
   output: Greeting

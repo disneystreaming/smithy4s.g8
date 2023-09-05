@@ -1,6 +1,6 @@
 \$version: "2"
 
-namespace com.example.hello
+namespace hello
 
 use alloy#simpleRestJson
 

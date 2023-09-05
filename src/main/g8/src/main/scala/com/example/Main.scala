@@ -1,6 +1,6 @@
 package com.example
 
-import com.example.hello._
+import hello._
 import cats.effect._
 import cats.implicits._
 import org.http4s.implicits._
@@ -29,16 +29,21 @@ object Routes {
 }
 
 object Main extends IOApp.Simple {
-  val run = Routes.all.flatMap { routes =>
-    val thePort = port"9000"
-    val theHost = host"localhost"
-    EmberServerBuilder
-      .default[IO]
-      .withPort(thePort)
-      .withHost(theHost)
-      .withHttpApp(routes.orNotFound)
-      .build <*
-      Resource.eval(IO.println(s"Server started on: \$theHost:\$thePort"))
-  }.useForever
+  val run = Routes.all
+    .flatMap { routes =>
+      val thePort = port"9000"
+      val theHost = host"localhost"
+      val message = s"Server started on: \$theHost:\$thePort, press enter to stop"
 
+      EmberServerBuilder
+        .default[IO]
+        .withPort(thePort)
+        .withHost(theHost)
+        .withHttpApp(routes.orNotFound)
+        .build
+        .productL(IO.println(message).toResource)
+    }
+    .useForever
+    .race(IO.readLine)
+    .void
 }

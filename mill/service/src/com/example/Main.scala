@@ -1,6 +1,6 @@
 package com.example
 
-import com.example.hello._
+import hello._
 import cats.effect._
 import cats.implicits._
 import org.http4s.implicits._
