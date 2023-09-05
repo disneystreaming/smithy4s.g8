@@ -3,8 +3,11 @@ import \$ivy.`com.disneystreaming.smithy4s::smithy4s-mill-codegen-plugin::$smith
 import smithy4s.codegen.mill._
 import mill._, mill.scalalib._
 
-object service extends ScalaModule with Smithy4sModule {
-  
+object service extends SbtModule with Smithy4sModule {
+
+  def millSourcePath = os.pwd
+  def smithy4sInputDirs = T.sources(millSourcePath / "src" / "main" / "smithy")
+
   def scalaVersion = "2.13.9"
   override def ivyDeps = Agg(
     ivy"com.disneystreaming.smithy4s::smithy4s-core:\${smithy4sVersion()}",

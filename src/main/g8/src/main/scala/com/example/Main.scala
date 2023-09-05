@@ -1,8 +1,9 @@
 package com.example
 
 import hello._
+import cats.syntax.all._
 import cats.effect._
-import cats.implicits._
+import cats.effect.syntax.all._
 import org.http4s.implicits._
 import org.http4s.ember.server._
 import org.http4s._
@@ -33,7 +34,8 @@ object Main extends IOApp.Simple {
     .flatMap { routes =>
       val thePort = port"9000"
       val theHost = host"localhost"
-      val message = s"Server started on: \$theHost:\$thePort, press enter to stop"
+      val message =
+        s"Server started on: \$theHost:\$thePort, press enter to stop"
 
       EmberServerBuilder
         .default[IO]
@@ -46,4 +48,6 @@ object Main extends IOApp.Simple {
     .useForever
     .race(IO.readLine)
     .void
+    .guarantee(IO.println("Goodbye!"))
+
 }
