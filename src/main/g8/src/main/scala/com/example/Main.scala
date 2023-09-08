@@ -9,6 +9,7 @@ import org.http4s.ember.server._
 import org.http4s._
 import com.comcast.ip4s._
 import smithy4s.http4s.SimpleRestJsonBuilder
+import scala.concurrent.duration._
 
 object HelloWorldImpl extends HelloWorldService[IO] {
   def hello(name: String, town: Option[String]): IO[Greeting] = IO.pure {
@@ -42,11 +43,11 @@ object Main extends IOApp.Simple {
         .withPort(thePort)
         .withHost(theHost)
         .withHttpApp(routes.orNotFound)
+        .withShutdownTimeout(1.second)
         .build
         .productL(IO.println(message).toResource)
     }
-    .useForever
-    .race(IO.readLine)
+    .surround(IO.readLine)
     .void
     .guarantee(IO.println("Goodbye!"))
 
