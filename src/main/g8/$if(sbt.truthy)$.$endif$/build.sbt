@@ -10,7 +10,7 @@ lazy val root = (project in file("."))
     libraryDependencies ++= Seq(
       "com.disneystreaming.smithy4s" %% "smithy4s-http4s" % smithy4sVersion.value,
       "com.disneystreaming.smithy4s" %% "smithy4s-http4s-swagger" % smithy4sVersion.value,
-      "org.http4s" %% "http4s-ember-server" % "0.23.16"
+      "org.http4s" %% "http4s-ember-server" % "0.23.25"
     ),
     Compile / run / fork := true,
     Compile / run / connectInput := true

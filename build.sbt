@@ -19,6 +19,6 @@ lazy val root = (project in file("."))
 // ensuring deps are updated inside of templates files
 lazy val phantomDeps = Def.settings(
   libraryDependencies ++= Seq(
-    "org.http4s" %% "http4s-ember-server" % "0.23.16"
+    "org.http4s" %% "http4s-ember-server" % "0.23.25"
   )
 )

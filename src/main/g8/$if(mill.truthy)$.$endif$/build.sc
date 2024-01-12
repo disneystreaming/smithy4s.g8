@@ -12,6 +12,6 @@ object service extends SbtModule with Smithy4sModule {
   override def ivyDeps = Agg(
     ivy"com.disneystreaming.smithy4s::smithy4s-core:\${smithy4sVersion()}",
     ivy"com.disneystreaming.smithy4s::smithy4s-http4s-swagger:\${smithy4sVersion()}",
-    ivy"org.http4s::http4s-ember-server:0.23.16"
+    ivy"org.http4s::http4s-ember-server:0.23.25"
   )
 }
