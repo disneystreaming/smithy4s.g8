@@ -10,6 +10,7 @@ service HelloWorldService {
   operations: [Hello]
 }
 
+@readonly
 @http(method: "GET", uri: "/hello/{name}", code: 200)
 operation Hello {
   input: Person,
